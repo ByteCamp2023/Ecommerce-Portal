@@ -203,9 +203,9 @@ const SeedProductScreen = ({ history, match }) => {
                                         >Submit</Button>
                                     </Form>
                                 ) : (
-                                        <p>
+                                        <Message>
                                             Please <Link to='/login'>sign in</Link> to write a review{' '}
-                                        </p>
+                                        </Message>
                                     )}
                             </ListGroup.Item>
                         </ListGroup>

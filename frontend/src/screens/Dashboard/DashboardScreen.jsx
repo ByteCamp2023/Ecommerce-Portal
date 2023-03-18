@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
+import StatCards from '../../components/DashBoard/StatCards/StatCards'
 import SideBarComponents from '../../components/SideBar/SideBarComponents'
-import StatisticsList from '../../components/DashBoard/Statistics/StatisticsList';
 
 const DashboardScreen = () => {
     return (
@@ -12,7 +12,7 @@ const DashboardScreen = () => {
                         <h4>Dashboard</h4>
                     </Col>
                     <Col md={9}>
-                        <h4 style={{ marginLeft: "30px" }}>Overall Statistics</h4>
+                        <h4 style={{marginLeft:"30px"}}>Overall Statistics</h4>
                     </Col>
                 </Row>
                 <Row>
@@ -20,7 +20,7 @@ const DashboardScreen = () => {
                         <SideBarComponents />
                     </Col>
                     <Col md={9}>
-                        <StatisticsList />
+                        <StatCards />
                     </Col>
                 </Row>
             </Container>

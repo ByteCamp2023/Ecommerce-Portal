@@ -64,7 +64,7 @@ const FarmerProduct = ({ history, match }) => {
                         : error
                             ? <Message variant='danger'>{error}</Message>
                             : (
-                                <Row className="p-1 seed-product" >
+                                <Row className="p-3 seed-product" >
                                     <Col md={5}>
                                         <Image className="mx-auto image-machine" src={product.image} alt={product.name} width={200} />
                                     </Col>
@@ -79,29 +79,8 @@ const FarmerProduct = ({ history, match }) => {
                                             <ListGroup.Item>
                                                 <h4>Product Description<br /></h4> {product.description}
                                             </ListGroup.Item>
-                                            {
-                                                product.phonenumber ? (
-                                                    <ListGroup.Item>
-                                                        <h4> Contact Number<br /></h4>
-                                                        <a rel="noreferrer" target='_blank' href={`https://wa.me/${product.phonenumber}`}>
-                                                            {product.phonenumber}
-                                                        </a>
-                                                    </ListGroup.Item>
-                                                ) : ''
-                                            }
                                             <ListGroup.Item>
-                                                <Row>
-                                                    <Col md={6}>
-                                                        <h4>Crop </h4>{product.cropSelection}
-                                                    </Col>
-                                                    {
-                                                        product.storage ? (
-                                                            <Col md={6}>
-                                                                <h4>Quantity </h4>{product.storage} kg
-                                                            </Col>
-                                                        ) : ''
-                                                    }
-                                                </Row>
+                                                <h4>Crop </h4>{product.cropSelection}
                                             </ListGroup.Item>
                                         </ListGroup>
                                     </Col>
@@ -119,7 +98,7 @@ const FarmerProduct = ({ history, match }) => {
                                                     {loadingError && (
                                                         <Message variant='danger'>{loadingError}</Message>
                                                     )}
-                                                    {userInfo && userInfo.isAdmin ? (
+                                                    {userInfo ? (
                                                         <Form onSubmit={submitHandler}>
                                                             <Form.Group controlId='rating'>
                                                                 <Form.Label>Rating</Form.Label>

@@ -1,12 +1,13 @@
 
 .consumerContainer {
-    margin-top: 120px !important;
+    margin-top: 130px !important;
     margin-bottom: 50px !important;
 }
 
 .consumer-title {
     text-align: center;
-    font-size: 20px;
+    margin-bottom: 50px;
+    font-size: 22px;
 }
 
 .title {

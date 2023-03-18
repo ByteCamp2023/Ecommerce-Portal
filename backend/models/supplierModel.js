@@ -34,27 +34,19 @@ const supplierSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        unique: true
     },
     address: {
         type: String,
         required: true
     },
-    phonenumber: {
-        type: String,
-        required: true
-    },
-    storage: {
-        type: String,
-        required: true
-    },
     reviews: [farmerProductReviewSchema],
     longitude: {
-        type: Number,
+        type: String,
         required: false
     },
     latitude: {
-        type: Number,
+        type: String,
         required: false
     },
     cropSelection: {

@@ -21,8 +21,6 @@ const AddSupplierProduct = () => {
     const [address, setAddress] = useState('')
     const [cropSelection, setCropSelection] = useState('')
     const [description, setDescription] = useState('')
-    const [phonenumber, setPhonenumber] = useState('')
-    const [storage, setStorage] = useState('')
     const [uploading, setUploading] = useState(false)
 
     const dispatch = useDispatch()
@@ -42,25 +40,13 @@ const AddSupplierProduct = () => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(createSupplierProduct({
-            name,
-            email,
-            address,
-            cropSelection,
-            storage,
-            image,
-            phonenumber,
-            description,
-        })
-        )
+        dispatch(createSupplierProduct({name, address, email, image, description, cropSelection}))
 
         setName('')
         setEmail('')
         setImage('')
         setAddress('')
         setCropSelection('')
-        setPhonenumber('')
-        setStorage('')
     }
 
     const uploadFileHandler = async (e) => {
@@ -115,17 +101,6 @@ const AddSupplierProduct = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                             ></Form.Control>
                         </Form.Group>
-                        <Form.Group controlId='address'>
-                            <Form.Label>Address <span style={{ color: 'red' }}>*</span></Form.Label>
-                            <Form.Control
-                                type="address"
-                                as="textarea" rows={1}
-                                placeholder="Enter address"
-                                value={address}
-                                required
-                                onChange={(e) => setAddress(e.target.value)}
-                            ></Form.Control>
-                        </Form.Group>
                         <Form.Group controlId='cropSelection'>
                             <Form.Label>Crop Selection <span style={{ color: 'red' }}>*</span></Form.Label>
                             <Form.Control
@@ -136,18 +111,6 @@ const AddSupplierProduct = () => {
                                 onChange={(e) => setCropSelection(e.target.value)}
                             ></Form.Control>
                         </Form.Group>
-                        <Form.Group controlId='storage'>
-                            <Form.Label>Product Size <span style={{ color: 'red' }}>*</span></Form.Label>
-                            <Form.Control
-                                type="storage"
-                                placeholder="Enter size (kg)"
-                                value={storage}
-                                required
-                                onChange={(e) => setStorage(e.target.value)}
-                            ></Form.Control>
-                        </Form.Group>
-                    </Col>
-                    <Col md={5}>
                         <Form.Group controlId='image'>
                             <Form.Label>Image <span style={{ color: 'red' }}>*</span></Form.Label>
                             <Form.Control
@@ -165,14 +128,17 @@ const AddSupplierProduct = () => {
                             ></Form.File>
                             {uploading && <Loader />}
                         </Form.Group>
-                        <Form.Group controlId='phonenumber'>
-                            <Form.Label>Phone Number <span style={{ color: 'red' }}>*</span></Form.Label>
+                    </Col>
+                    <Col md={5}>
+                        <Form.Group controlId='address'>
+                            <Form.Label>Address <span style={{ color: 'red' }}>*</span></Form.Label>
                             <Form.Control
-                                type="phonenumber"
-                                placeholder="Enter phonenumber"
-                                value={phonenumber}
+                                type="address"
+                                as="textarea" rows={3}
+                                placeholder="Enter address"
+                                value={address}
                                 required
-                                onChange={(e) => setPhonenumber(e.target.value)}
+                                onChange={(e) => setAddress(e.target.value)}
                             ></Form.Control>
                         </Form.Group>
                         <Form.Group controlId='description'>

@@ -17,23 +17,11 @@ import {
     FARMER_PRODUCT_CREATE_REVIEW_FAIL,
     SUPPLIER_PRODUCT_UPDATE_FAIL,
     SUPPLIER_PRODUCT_UPDATE_REQUEST,
-    SUPPLIER_PRODUCT_UPDATE_SUCCESS,
-    SUPPLIER_PRODUCT_FOR_ALL_REQUEST,
-    SUPPLIER_PRODUCT_FOR_ALL_SUCCESS,
-    SUPPLIER_PRODUCT_FOR_ALL_FAIL
+    SUPPLIER_PRODUCT_UPDATE_SUCCESS
 } from './../constants/supplierConstant'
 import { logout } from './userActions'
 
-export const createSupplierProduct = ({
-    name,
-    email,
-    address,
-    cropSelection,
-    storage,
-    image,
-    phonenumber,
-    description
-}) => async (dispatch, getState) => {
+export const createSupplierProduct = ({ name, address, email, image, cropSelection, description }) => async (dispatch, getState) => {
     try {
         dispatch({
             type: SUPPLIER_PRODUCT_CREATE_REQUEST,
@@ -50,16 +38,7 @@ export const createSupplierProduct = ({
 
         const { data } = await axios.post(
             '/api/supplier',
-            {
-                name,
-                email,
-                address,
-                cropSelection,
-                storage,
-                image,
-                phonenumber,
-                description
-            },
+            { name, email, address, image, cropSelection, description },
             config
         )
 
@@ -255,65 +234,6 @@ export const updateReviewed = (product) => async (dispatch, getState) => {
                 error.response && error.response.data.message
                     ? error.response.data.message
                     : error.message
-        })
-    }
-}
-
-export const updateSupplierProduct = (product) => async (dispatch, getState) => {
-    try {
-        dispatch({
-            type: SUPPLIER_PRODUCT_UPDATE_REQUEST,
-        })
-
-        const { userLogin: { userInfo } } = getState()
-
-        const config = {
-            headers: {
-                'Content-type': 'application/json',
-                Authorization: `Bearer ${userInfo.token}`
-            },
-        }
-
-        const { data } = await axios.put(`/api/supplier/product/${product._id}/edit`, product, config)
-
-        dispatch({
-            type: SUPPLIER_PRODUCT_UPDATE_SUCCESS,
-            payload: data
-        })
-
-    } catch (error) {
-        dispatch({
-            type: SUPPLIER_PRODUCT_UPDATE_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message
-        })
-    }
-}
-
-// For all
-export const listSupplierProductsForAll = () => async (dispatch) => {
-    try {
-        dispatch({
-            type: SUPPLIER_PRODUCT_FOR_ALL_REQUEST,
-        })
-
-        const { data } = await axios.get(`/api/supplier/all`)
-
-        dispatch({
-            type: SUPPLIER_PRODUCT_FOR_ALL_SUCCESS,
-            payload: data,
-        })
-    } catch (error) {
-        const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
-
-        dispatch({
-            type: SUPPLIER_PRODUCT_FOR_ALL_FAIL,
-            payload: message,
         })
     }
 }

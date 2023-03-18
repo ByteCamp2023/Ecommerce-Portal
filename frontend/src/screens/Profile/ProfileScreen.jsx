@@ -50,7 +50,6 @@ const ProfileScreen = ({ history }) => {
     const { loading: loadingProducts, error: errorProducts, products } = supplierProdictListMy
 
     useEffect(() => {
-
         if (!userInfo) {
             history.push('/login')
         } else {
@@ -78,12 +77,11 @@ const ProfileScreen = ({ history }) => {
     const handleClick = (event) => {
         setShow(!show);
         setTarget(event.target);
-
     };
 
 
     return (
-        <Container fluid style={{ marginBottom: '50px' }}>
+        <Container style={{ marginBottom: '50px' }}>
             <Row>
                 <Col md={3}>
                     <h2 style={{ marginTop: '110px' }}>User Profile</h2>
@@ -143,7 +141,7 @@ const ProfileScreen = ({ history }) => {
                     </Form>
                 </Col>
                 <Col md={9}>
-                    <Scrollbar style={{ width: '100%', height: 630 }}>
+                    <Scrollbar style={{ width: '100%', height: 600 }}>
                         <Container fluid>
                             <Row>
                                 <h2 style={{ marginTop: '110px' }}>My Orders</h2>
@@ -199,7 +197,6 @@ const ProfileScreen = ({ history }) => {
                                                         <th>IMAGE</th>
                                                         <th>CROP</th>
                                                         <th>REVIEWED</th>
-                                                        <th>EDIT</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -219,7 +216,9 @@ const ProfileScreen = ({ history }) => {
                                                                             className="mt-2"
                                                                             ref={target}
                                                                             onClick={handleClick}
-                                                                        > Check
+                                                                        >
+                                                                            <i className="fas fa-check mr-2" style={{ color: 'green', fontSize: '24px' }}></i>
+                                                                            Check
                                                                         </Button>
                                                                     ) : <i className="fas fa-times" style={{ color: 'red', fontSize: '24px' }}></i>
                                                                 }
@@ -234,20 +233,13 @@ const ProfileScreen = ({ history }) => {
                                                                         <Popover.Title as="h3">Rating: {product.rating}</Popover.Title>
                                                                         {
                                                                             product.reviews.map(review => (
-                                                                                <Popover.Content key={review._id}>
+                                                                                <Popover.Content>
                                                                                     <strong>Feedback: {review.comment}</strong>
                                                                                 </Popover.Content>
                                                                             ))
                                                                         }
                                                                     </Popover>
                                                                 </Overlay>
-                                                            </td>
-                                                            <td>
-                                                                <LinkContainer to={`/supplierproducts/${product._id}/edit`}>
-                                                                    <Button variant="light" className="btn btn-sm">
-                                                                        <i className="fas fa-edit"></i>
-                                                                    </Button>
-                                                                </LinkContainer>
                                                             </td>
                                                         </tr>
                                                     ))}
