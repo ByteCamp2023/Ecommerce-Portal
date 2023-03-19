@@ -40,13 +40,21 @@ const supplierSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    phonenumber: {
+        type: String,
+        required: true
+    },
+    storage: {
+        type: String,
+        required: true
+    },
     reviews: [farmerProductReviewSchema],
     longitude: {
-        type: String,
+        type: Number,
         required: false
     },
     latitude: {
-        type: String,
+        type: Number,
         required: false
     },
     cropSelection: {
@@ -64,7 +72,7 @@ const supplierSchema = mongoose.Schema({
     isReviwed: {
         type: Boolean,
         required: true,
-        default: false
+        default: true
     },
     rating: {
         type: Number,
